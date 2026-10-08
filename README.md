@@ -29,3 +29,4 @@ Remarks:
 Potential Questions:
 - Is there an association between comfort levels and courses taken?
 - Is there an association between Programming language preference and Lab vs Industry interest or a particular industry?
+- Is there an association between comfort level and a particular course taken?

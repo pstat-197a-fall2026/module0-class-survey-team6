@@ -13,6 +13,9 @@ library(tidyverse)
 #Connection between math and programming language preference?
 #Connection between programming proficiency and comfort level?
 #Are there different types of students hiding in the data? Unsupervised methods like clustering might help you find students who take a particular type of class or something like that.
+    #Method: turn the 11 areas options into yes/no columns and cluster the students (hierarchical clustering or k-modes), or reduce with PCA/MCA and plot.
+    #What I'd look for: whether a "modern ML" group (deep learning, images, NLP, deployment) separates from a "classical stats" group (inference, time series, visualization).
+    #Follow-up: check whether the clusters differ in language preference or in industry vs. lab.
 #What distinguishes students who have research experience?
 #Can you tell a python student from an R student just from the classes they've taken or some other background?
 #Is there an association between domains chosen and areas chosen. Ex. Is an Env Science domain student more interested in chosing an Env Science area?

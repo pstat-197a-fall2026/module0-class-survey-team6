@@ -1,5 +1,5 @@
 Is there an association between comfort levels and courses taken?
-- I think this would be neat since it might show if there's more comfort after taking more courses. Which is what I would expect.
+  - Variables needed: .comf levels as integers and upper_div_courses (the factor), and potentially the list 
 
 Is there an association between Programming language preference and Lab vs Industry interest or a particular industry?
   - 

@@ -1,0 +1,34 @@
+---
+title: "Question 2 Analysis"
+format: html
+editor: visual
+---
+
+**Association Between Track Preference and Programming Language**
+
+"Is there an association between Programming language preference and Lab vs Industry interest or a particular industry?"
+
+"
+
+- Variables: "type", "language", "response_id", "domains"
+
+- Fixed Responses: Language choices are strictly "Python", "R", and "No preference".
+
+- Data Prep: Filter to binary track comparison ("lab" and "ind"), excluding "both".
+
+- Summaries & Plots: 2 x 3 contingency table, Chi-Square test for independence, and a proportion-filled bar chart.
+
+- Limitation: Excluding students with "both" or narrows focus to students committed to a specific track, but drops the track-agnostic students from the sample.
+
+"
+
+```{r}
+library(tidyverse)
+library(here)
+
+# Loading clean interest survey data with here
+data_file <- here("data", "interest-clean.csv")
+if (!file.exists(data_file)) {
+data_file <- here("interest-clean.csv")
+}
+```

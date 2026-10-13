@@ -1,0 +1,127 @@
+---
+title: "Question 3 Analysis"
+format: html
+editor: visual
+---
+
+## Question 3 
+"Turn the 11 areas options into yes/no columns and cluster the students (hierarchical clustering or k-modes), or reduce with PCA/MCA and plot. What I'd look for: whether a "modern ML" group (deep learning, images, NLP, deployment) separates from a "classical stats" group (inference, time series, visualization). Follow-up: check whether the clusters differ in language preference or in industry vs. lab."
+
+
+Can we identify distinct groups of students based on their data science interests, and how do these groups differ in their programming preferences and project goals?"
+```{r}
+library(tidyverse)
+
+interest <- read_csv('data/interest-clean.csv', show_col_types = FALSE)
+
+# Split the interests by comma and count them
+interest_counts <- interest %>%
+  separate_rows(areas, sep = ",") %>%
+  mutate(areas = str_trim(areas)) %>%
+  filter(!is.na(areas), areas != "") %>%
+  count(areas, sort = TRUE)
+
+#removes "generally" b/c the "," was messing it up 
+#note if it was important - please go over 
+interest_counts <- interest %>%
+  separate_rows(areas, sep = ",") %>%
+  mutate(areas = str_remove(areas, ",?\\s*generally")) %>%
+  mutate(areas = str_trim(areas)) %>%
+  filter(!is.na(areas), areas != "") %>%
+  count(areas, sort = TRUE)
+
+# Graph the interests
+ggplot(interest_counts, aes(x = reorder(areas, n), y = n)) +
+  geom_col(fill = "pink", color = "black") +
+  coord_flip() +
+  labs(
+    title = "Topic Interests Among Students",
+    x = "Topic Intrests",
+    y = "Number of Students"
+  ) +
+  theme_minimal()
+
+```
+```{r}
+#What areas do students normally chose together? 
+interest_long <- interest %>%
+  mutate(student = row_number()) %>%
+  separate_rows(areas, sep = ",") %>%
+  mutate(areas = str_trim(areas)) %>%
+  filter(!is.na(areas), areas != "", areas != "generally") %>%
+  distinct(student, areas)
+
+interest_binary <- interest_long %>%
+  mutate(selected = 1) %>%
+  pivot_wider(
+    names_from = areas,
+    values_from = selected,
+    values_fill = 0
+  )
+
+interest_matrix <- interest_binary %>%
+  select(-student)
+
+set.seed(123)
+clusters <- kmeans(interest_matrix, centers = 3)
+pca <- prcomp(interest_matrix)
+
+cluster_plot <- as.data.frame(pca$x[, 1:2])
+cluster_plot$cluster <- as.factor(clusters$cluster)
+ggplot(cluster_plot, aes(x = PC1, y = PC2, color = cluster)) +
+  geom_point(size = 3) +
+  labs(
+    title = "Student Clusters Based on Data Science Interests",
+    x = "Principal Component 1",
+    y = "Principal Component 2",
+    color = "Cluster"
+  ) +
+  theme_minimal()
+
+#Cluster 1 Red: Students who commonly selected deep learning and image analysis.
+#Cluster 2 Green: Students who commonly selected databases, deep learning, and model deployment.
+#Cluster 3 Blue: Students who commonly selected statistics, visualization, and data acquisition.
+```
+```{r}
+#What do the clusters mean 
+cluster_graph <- cluster_summary %>%
+  pivot_longer(
+    cols = -cluster,
+    names_to = "Interest",
+    values_to = "Percentage"
+  )
+ggplot(cluster_graph, aes(x = factor(cluster), y = Interest,
+                          fill = Percentage)) +
+  geom_tile(color = "black") +
+  geom_text(aes(label = paste0(round(Percentage * 100), "%")),
+            size = 3) +
+  scale_fill_gradient(low = "white", high = "steelblue") +
+  labs(
+    title = "Data Science Interests by Cluster",
+    x = "Cluster",
+    y = "Data Science Interest",
+    fill = "Proportion"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+#What language does every cluster prefer 
+interest_language <- interest %>%
+  mutate(student = row_number()) %>%
+  left_join(
+    interest_binary %>% select(student, cluster),
+    by = "student"
+  )
+ggplot(interest_language,
+       aes(x = factor(cluster), fill = language)) +
+  geom_bar(position = "fill", color = "black") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(
+    title = "Programming Language Preference by Cluster",
+    x = "Cluster",
+    y = "Percentage of Students",
+    fill = "Language"
+  ) +
+  theme_minimal()
+```

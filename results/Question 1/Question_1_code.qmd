@@ -70,3 +70,13 @@ background %>%
   labs(x = 'Upper Division Courses', y = 'Math Comfort Level') +
   theme_minimal()
 ```
+
+```{r}
+#Stats comfort by group
+background %>%
+  ggplot(aes(x = course_group, y = stat.comf)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.1, height = 0) +
+  labs(x = 'Upper Division Courses', y = 'Stats Comfort Level') +
+  theme_minimal()
+```

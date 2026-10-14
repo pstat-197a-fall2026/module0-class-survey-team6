@@ -80,3 +80,11 @@ background %>%
   labs(x = 'Upper Division Courses', y = 'Stats Comfort Level') +
   theme_minimal()
 ```
+
+```{r}
+#Wilcoxon rank-sum test for each comfort type since comfort is a 1-5 rating
+#exact = FALSE because a lot of students gave the same rating (ties)
+wilcox.test(prog.comf ~ course_group, data = background, exact = FALSE)
+wilcox.test(math.comf ~ course_group, data = background, exact = FALSE)
+wilcox.test(stat.comf ~ course_group, data = background, exact = FALSE)
+```

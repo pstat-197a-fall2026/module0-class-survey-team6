@@ -15,21 +15,15 @@ library(tidyverse)
 
 background <- read_csv('../data/background-clean.csv', show_col_types = FALSE)
 interest <- read_csv('../data/interest-clean.csv', show_col_types = FALSE)
-# Split the interests by comma and count them
-interest_counts <- interest %>%
-  separate_rows(areas, sep = ",") %>%
-  mutate(areas = str_trim(areas)) %>%
-  filter(!is.na(areas), areas != "") %>%
-  count(areas, sort = TRUE)
 
-#removes "generally" b/c the "," was messing it up 
-#note if it was important - please go over 
+# Split the interests by comma, clean the labels, and count them
 interest_counts <- interest %>%
   separate_rows(areas, sep = ",") %>%
   mutate(areas = str_remove(areas, ",?\\s*generally")) %>%
   mutate(areas = str_trim(areas)) %>%
-  filter(!is.na(areas), areas != "") %>%
+  filter(!is.na(areas), areas != "", areas != "generally") %>%
   count(areas, sort = TRUE)
+
 
 # Graph the interests
 ggplot(interest_counts, aes(x = reorder(areas, n), y = n)) +
@@ -37,7 +31,7 @@ ggplot(interest_counts, aes(x = reorder(areas, n), y = n)) +
   coord_flip() +
   labs(
     title = "Topic Interests Among Students",
-    x = "Topic Intrests",
+    x = "Topic Interests",
     y = "Number of Students"
   ) +
   theme_minimal()
@@ -136,4 +130,26 @@ ggplot(interest_language,
     fill = "Language"
   ) +
   theme_minimal()
+```
+
+```{r}
+# Compare project goals across clusters
+interest_goals <- interest %>%
+  mutate(student = row_number()) %>%
+  left_join(
+    interest_binary %>% select(student, cluster),
+    by = "student"
+  )
+
+ggplot(interest_goals, aes(x = factor(cluster), fill = type)) +
+  geom_bar(position = "fill", color = "black") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(
+    title = "Project Goal Preference by Cluster",
+    x = "Cluster",
+    y = "Percentage of Students",
+    fill = "Project Goal"
+  ) +
+  theme_minimal()
+
 ```

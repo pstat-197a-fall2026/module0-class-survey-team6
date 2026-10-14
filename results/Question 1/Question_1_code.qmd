@@ -1,0 +1,22 @@
+---
+title: "Question 1 Analysis"
+format: html
+editor: visual
+execute:
+  warning: false
+  message: false
+---
+
+**Comfort Levels and Number of Upper Division Courses**
+
+"Is there an association between comfort levels and the number of upper division courses taken?"
+
+-   Variables: "prog.comf", "math.comf", "stat.comf", "upper_div_courses"
+
+-   All of these are in background-clean.csv
+
+-   Data Prep: Only 2 students are in the 3-5 group, so we combine 3-5 and 6-8 into "8 or fewer" and compare against "9+".
+
+-   Summaries & Plots: Table of average comfort by group, boxplots for each comfort type, and a Wilcoxon rank-sum test for each comfort type since comfort is a 1-5 rating.
+
+-   Limitation: Merging groups loses some detail, and comfort is self-reported.

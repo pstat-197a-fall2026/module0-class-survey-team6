@@ -40,3 +40,13 @@ background <- background %>%
 #Checking the new group counts
 background %>% count(course_group)
 ```
+
+```{r}
+#Average comfort level for each group
+background %>%
+  group_by(course_group) %>%
+  summarise(prog = round(mean(prog.comf), 2),
+            math = round(mean(math.comf), 2),
+            stat = round(mean(stat.comf), 2),
+            n = n())
+```

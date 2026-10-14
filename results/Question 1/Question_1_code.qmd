@@ -20,3 +20,14 @@ execute:
 -   Summaries & Plots: Table of average comfort by group, boxplots for each comfort type, and a Wilcoxon rank-sum test for each comfort type since comfort is a 1-5 rating.
 
 -   Limitation: Merging groups loses some detail, and comfort is self-reported.
+
+```{r}
+library(tidyverse)
+library(here)
+
+#Loading background survey data
+background <- read_csv(here("data", "background-clean.csv"), show_col_types = FALSE)
+
+#Checking how many students are in each upper div group
+background %>% count(upper_div_courses)
+```

@@ -50,3 +50,13 @@ background %>%
             stat = round(mean(stat.comf), 2),
             n = n())
 ```
+
+```{r}
+#Programming comfort by group
+background %>%
+  ggplot(aes(x = course_group, y = prog.comf)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.1, height = 0) +
+  labs(x = 'Upper Division Courses', y = 'Programming Comfort Level') +
+  theme_minimal()
+```

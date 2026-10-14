@@ -31,3 +31,12 @@ background <- read_csv(here("data", "background-clean.csv"), show_col_types = FA
 #Checking how many students are in each upper div group
 background %>% count(upper_div_courses)
 ```
+
+```{r}
+#Only 2 students in 3-5, so combining 3-5 and 6-8 into one group
+background <- background %>%
+  mutate(course_group = ifelse(upper_div_courses == "9+", "9+", "8 or fewer"))
+
+#Checking the new group counts
+background %>% count(course_group)
+```

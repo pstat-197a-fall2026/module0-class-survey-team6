@@ -171,7 +171,7 @@ window.Quarto = {
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">coding_language =</span> <span class="fu">factor</span>(coding_language, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Python"</span>, <span class="st">"R"</span>, <span class="st">"No preference"</span>))</span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking values of two types</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking values of two types to make sure we can actually run tests</span></span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>interest_comp <span class="sc">%&gt;%</span> <span class="fu">count</span>(track_pref)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
@@ -179,6 +179,23 @@ window.Quarto = {
   &lt;fct&gt;         &lt;int&gt;
 1 Industry Only    32
 2 Lab-Inclined     17</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#2x3 Contingency Table (Observed Counts)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>observed_table <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">Track =</span> interest_comp<span class="sc">$</span>track_pref, <span class="at">Language =</span> interest_comp<span class="sc">$</span>coding_language)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>observed_table</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               Language
+Track           Python  R No preference
+  Industry Only     17  5            10
+  Lab-Inclined       5  6             6</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Percentage of each track group preferring each language (Rows add up to 100, so its stratified by Industry-Only vs Lab-Inclined)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(observed_table, <span class="at">margin =</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               Language
+Track           Python    R No preference
+  Industry Only   53.1 15.6          31.2
+  Lab-Inclined    29.4 35.3          35.3</code></pre>
 </div>
 </div>
 

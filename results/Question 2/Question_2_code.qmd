@@ -50,6 +50,13 @@ interest_comp <- interest %>%
     coding_language = factor(coding_language, levels = c("Python", "R", "No preference"))
   )
 
-#Checking values of two types
+#Checking values of two types to make sure we can actually run tests
 interest_comp %>% count(track_pref)
+
+#2x3 Contingency Table (Observed Counts)
+observed_table <- table(Track = interest_comp$track_pref, Language = interest_comp$coding_language)
+observed_table
+
+#Percentage of each track group preferring each language (Rows add up to 100, so its stratified by Industry-Only vs Lab-Inclined)
+round(prop.table(observed_table, margin = 1) * 100, 1)
 ```

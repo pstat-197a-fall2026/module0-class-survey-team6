@@ -4,16 +4,17 @@ format: html
 editor: visual
 ---
 
-## Question 3 
+## Question 3
+
 "Turn the 11 areas options into yes/no columns and cluster the students (hierarchical clustering or k-modes), or reduce with PCA/MCA and plot. What I'd look for: whether a "modern ML" group (deep learning, images, NLP, deployment) separates from a "classical stats" group (inference, time series, visualization). Follow-up: check whether the clusters differ in language preference or in industry vs. lab."
 
-
 Can we identify distinct groups of students based on their data science interests, and how do these groups differ in their programming preferences and project goals?"
+
 ```{r}
 library(tidyverse)
 
-interest <- read_csv('data/interest-clean.csv', show_col_types = FALSE)
-
+background <- read_csv('../data/background-clean.csv', show_col_types = FALSE)
+interest <- read_csv('../data/interest-clean.csv', show_col_types = FALSE)
 # Split the interests by comma and count them
 interest_counts <- interest %>%
   separate_rows(areas, sep = ",") %>%
@@ -42,7 +43,10 @@ ggplot(interest_counts, aes(x = reorder(areas, n), y = n)) +
   theme_minimal()
 
 ```
+
 ```{r}
+#I redid this so can someone please run it to make sure it works on their end. It was working when I ran the code but when I tried to render it it stopped. I finally got it to work but can someone else please take a look (and delete this comment after)
+
 #What areas do students normally chose together? 
 interest_long <- interest %>%
   mutate(student = row_number()) %>%
@@ -64,10 +68,17 @@ interest_matrix <- interest_binary %>%
 
 set.seed(123)
 clusters <- kmeans(interest_matrix, centers = 3)
-pca <- prcomp(interest_matrix)
+interest_binary$cluster <- clusters$cluster
 
+cluster_summary <- interest_binary %>%
+  select(-student) %>%
+  group_by(cluster) %>%
+  summarise(across(everything(), mean), .groups = "drop")
+
+pca <- prcomp(interest_matrix)
 cluster_plot <- as.data.frame(pca$x[, 1:2])
 cluster_plot$cluster <- as.factor(clusters$cluster)
+
 ggplot(cluster_plot, aes(x = PC1, y = PC2, color = cluster)) +
   geom_point(size = 3) +
   labs(
@@ -77,11 +88,11 @@ ggplot(cluster_plot, aes(x = PC1, y = PC2, color = cluster)) +
     color = "Cluster"
   ) +
   theme_minimal()
-
 #Cluster 1 Red: Students who commonly selected deep learning and image analysis.
-#Cluster 2 Green: Students who commonly selected databases, deep learning, and model deployment.
-#Cluster 3 Blue: Students who commonly selected statistics, visualization, and data acquisition.
+#Cluster 2 Green: Students who commonly selected databases, deep learning, and model deployment
+#Cluster 3 Blue: Students who commonly selected statistics, visualization, and data acquisition
 ```
+
 ```{r}
 #What do the clusters mean 
 cluster_graph <- cluster_summary %>%
@@ -107,6 +118,7 @@ ggplot(cluster_graph, aes(x = factor(cluster), y = Interest,
 
 ```{r}
 #What language does every cluster prefer 
+interest_binary$cluster <- clusters$cluster
 interest_language <- interest %>%
   mutate(student = row_number()) %>%
   left_join(

@@ -11,7 +11,6 @@ execute:
 
 "Is there an association between programming language preference and a student's career track orientation (Industry-only vs. Lab-inclined)?"
 
-
 - Variables: "type", "language", "response_id", "domains"
 
 - Fixed Responses: Language choices are strictly "Python", "R", and "No preference".
@@ -21,7 +20,6 @@ execute:
 - Summaries & Plots: $2 \times 3$ contingency table, Chi-Square test of independence (with Fisher's Exact Test fallback if expected cell counts remain sparse), and a 100% proportion-filled bar chart.
 
 - Methodological Tradeoff: Grouping students who chose "both" with "lab" balances group totals so Chi-Square can be ran, but groups flexible students as having an affinity for academic lab work.
-
 
 ```{r}
 library(tidyverse)

@@ -31,6 +31,12 @@ When looking at whether comfort levels and course counts, we failed to find corr
 
 Write a brief description of the dataset. Your description should cover how data were obtained, sample characteristics, and measurements taken. It does not need to be exhaustive, but sufficiently detailed to convey a clear high-level understanding of the dataset. You can utilize bullet points or tables if you feel it would help improve clarity.
 
+The data was obtained from the PSTAT197A course survey, which was sent out to students at the beginning of the 2026 fall quarter. The survey was anonymized and consisted of two parts: a background survey and an interest survey. The background survey collected information on students' comfort levels with programming, mathematics, and statistics, as well as the number of upper division courses they had taken. The interest survey gathered data on students' preferred areas of study within data science, their programming language preferences, and their career track orientation (Industry-only vs. Lab-inclined). Given that students were given the option to have their responses included in the analysis, the sample consisted of 51 responses for the background survey and 49 responses for the interest survey.
+
+One important characteristic is that the sample size is small, which limits the generalizability of the findings. Additionally, the survey responses are self-reported, which may introduce bias or inaccuracies in the data. Such as with proficiency, where students may overestimate or underestimate their abilities.
+
+The data is that it includes both categorical and discrete numerical variables. Comfort levels are measured on a 1-5 scale, while the number of upper division courses is a categorical variable with three levels (0-2, 3-5, 6-8, 9+). Programming language preference is a categorical variable with three levels (Python, R, No preference), and career track orientation is a binary variable (Industry-only vs. Lab-inclined).
+
 ## Questions of interest
 
 Indicate the questions your analysis addresses. These should map one-to-one to your findings. Don't include questions you didn't answer or questions you started with and refined later. If you would rather frame them as goals or tasks rather than questions that is okay; just modify the header appropriately. However you frame what you've done, you may only have two or three items; that is fine. Provide an itemized or numbered list so that the reader can easily identify your objectives.

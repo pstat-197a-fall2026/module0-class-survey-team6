@@ -53,6 +53,16 @@ We explored how students’ academic experiences and personal interests relate t
 
 Summarize your results. Don't try to explain every step you took; focus instead on providing the main data analytic outputs -- tables and figures -- and explaining clearly what they show. Clarify any important decisions you made in obtaining them. You can display codes if you like but it is not necessary.
 
+### Code chunks
+
+```{r}
+background <- read_csv('../data/background-clean.csv', show_col_types = FALSE)
+
+#Only 2 students in 3-5, so combining 3-5 and 6-8 into one group
+background <- background %>%
+  mutate(course_group = ifelse(upper_div_courses == "9+", "9+", "8 or fewer"))
+```
+
 ## Useful tips (remove this section)
 
 Due to the visual editor, most common needs for authoring can be met using menu items in the RStudio IDE. For a comprehensive guide to Quarto, see the [documentation](https://quarto.org/docs/guide/); consult the documentation for anything you can't sort out in the IDE.

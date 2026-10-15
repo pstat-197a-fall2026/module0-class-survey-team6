@@ -59,4 +59,36 @@ observed_table
 
 #Percentage of each track group preferring each language (Rows add up to 100, so its stratified by Industry-Only vs Lab-Inclined)
 round(prop.table(observed_table, margin = 1) * 100, 1)
+
+#Pearson's Chi-Square Test for Independence
+chi_test <- chisq.test(observed_table)
+chi_test
+
+#Inspecting expected counts under the null hypothesis
+chi_test$expected
+
+#Fisher's Exact Test due to small sample size in some cells (Lab-Inclined x R is below 5 for expected counts)
+fisher_test <- fisher.test(observed_table)
+fisher_test
+
+#Proportion-filled bar chart comparing language breakdowns across the different tracks
+ggplot(interest_comp, aes(x = track_pref, fill = coding_language)) +
+  geom_bar(position = "fill", color = "black") +
+  scale_y_continuous(labels = scales::percent) +
+  scale_fill_brewer(palette = "Set2") +
+  labs(
+    title = "Programming Language Preference by Track Orientation",
+    subtitle = "Comparing Industry-Only vs. Lab-Inclined Cohorts",
+    x = "Career Track Orientation", y = "Percentage of Students",
+    fill = "Language Preference"
+  ) +
+  theme_minimal()
 ```
+
+**Findings**
+
+- Observed Shift: Industry-only respondents predominantly favored Python (53.1%) over R (15.6%), while Lab-inclined respondents showed a stronger leaning toward R (35.3%) compared to Python (29.4%). Both groups maintained similar rates of "No preference" (around 33%).
+
+- Statistical Significance: The Pearson Chi-Square test yielded $X^2 = 3.36$ ($p = 0.186$), and Fisher's Exact Test (accounting for the one cell with an expected count $< 5$, yielded $p = 0.181$. Because $p > 0.05$, we fail to reject the null hypothesis of independence.
+
+- Conclusion: While the sample proportions suggest a visual leaning toward R within the Lab-inclined cohort (everybody not industry), there is insufficient evidence to conclude that programming language preference is significantly associated with career track interest in this cohort of students.

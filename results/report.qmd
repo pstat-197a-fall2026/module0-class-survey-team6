@@ -75,6 +75,17 @@ background %>%
                caption = "Table 1.1: Average Comfort Level by Group")
 ```
 
+```{r}
+#Programming comfort by group
+background %>%
+  ggplot(aes(x = course_group, y = prog.comf)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.1, height = 0) +
+  labs(title = "Figure 1.1: Programming Comfort by Upper Division Courses",
+       x = 'Upper Division Courses', y = 'Programming Comfort Level') +
+  theme_minimal()
+```
+
 ## Useful tips (remove this section)
 
 Due to the visual editor, most common needs for authoring can be met using menu items in the RStudio IDE. For a comprehensive guide to Quarto, see the [documentation](https://quarto.org/docs/guide/); consult the documentation for anything you can't sort out in the IDE.

@@ -23,7 +23,7 @@ library(tidyverse)
 
 Write a one-paragraph abstract summarizing what you did and your findings. It need not be comprehensive; try to highlight the most important or interesting outcomes.
 
-When looking at whether comfort levels and course counts, we failed to find correlation. This was also the case when considering if students with interest in Lab vs Industry positions favored either Python or R. \[smth about question 3\]. The greatest obstacle in this research was the small sample size, which made rejecting null hypothesis challenging.
+When looking at comfort levels and course counts, we failed to find correlation. This was also the case when considering if students with interest in Lab vs Industry positions favored either Python or R. When clustering students based on interests, the lack of distinct clusters was fairly apparent as well. The greatest obstacle in this research was the small sample size, which made rejecting null hypothesis challenging.
 
 ## Data description
 

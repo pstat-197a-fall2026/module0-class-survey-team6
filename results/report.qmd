@@ -14,8 +14,6 @@ execute:
   cache: true
 ---
 
-Use this as a template. Keep the headers and remove all other text. Overall, your report may be quite short. When it is complete, render and then push changes to your team repository.
-
 ```{r}
 # load any other packages and read data here
 library(tidyverse)
@@ -29,8 +27,6 @@ When looking at whether comfort levels and course counts, we failed to find corr
 
 ## Data description
 
-Write a brief description of the dataset. Your description should cover how data were obtained, sample characteristics, and measurements taken. It does not need to be exhaustive, but sufficiently detailed to convey a clear high-level understanding of the dataset. You can utilize bullet points or tables if you feel it would help improve clarity.
-
 The data was obtained from the PSTAT197A course survey, which was sent out to students at the beginning of the 2026 fall quarter. The survey was anonymized and consisted of two parts: a background survey and an interest survey. The background survey collected information on students' comfort levels with programming, mathematics, and statistics, as well as the number of upper division courses they had taken. The interest survey gathered data on students' preferred areas of study within data science, their programming language preferences, and their career track orientation (Industry-only vs. Lab-inclined). Given that students were given the option to have their responses included in the analysis, the sample consisted of 51 responses for the background survey and 49 responses for the interest survey.
 
 One important characteristic is that the sample size is small, which limits the generalizability of the findings. Additionally, the survey responses are self-reported, which may introduce bias or inaccuracies in the data. Such as with proficiency, where students may overestimate or underestimate their abilities.
@@ -38,8 +34,6 @@ One important characteristic is that the sample size is small, which limits the 
 The data is that it includes both categorical and discrete numerical variables. Comfort levels are measured on a 1-5 scale, while the number of upper division courses is a categorical variable with three levels (3-5, 6-8, 9+). Programming language preference is a categorical variable with three levels (Python, R, No preference), and career track orientation is a binary variable (Industry-only vs. Lab-inclined).
 
 ## Questions of interest
-
-Indicate the questions your analysis addresses. These should map one-to-one to your findings. Don't include questions you didn't answer or questions you started with and refined later. If you would rather frame them as goals or tasks rather than questions that is okay; just modify the header appropriately. However you frame what you've done, you may only have two or three items; that is fine. Provide an itemized or numbered list so that the reader can easily identify your objectives.
 
 We explored how students’ academic experiences and personal interests relate to their experiences and future goals in data science. Specifically, we investigated the connection between coursework and technical confidence, the relationship between programming preferences and career plans, and the possibility of identifying common patterns in students’ areas of interest. These questions guided our analysis:
 
@@ -51,7 +45,17 @@ We explored how students’ academic experiences and personal interests relate t
 
 ### Findings
 
-Summarize your results. Don't try to explain every step you took; focus instead on providing the main data analytic outputs -- tables and figures -- and explaining clearly what they show. Clarify any important decisions you made in obtaining them. You can display codes if you like but it is not necessary.
+To answer this question, we compared students' self-reported comfort with programming, math, and statistics (each rated 1-5) across the number of upper division courses they had taken. Only 2 students reported taking 3-5 courses, so we combined the 3-5 and 6-8 groups into a single "8 or fewer" group (21 students) and compared it to the "9+" group (30 students).
+
+Table 1.1 shows that average comfort levels are nearly identical between the two groups for programming (3.71 vs 3.70) and math (3.95 vs 3.93). Stats comfort was slightly higher for students with 8 or fewer courses (4.29 vs 4.03), which is the opposite of what we expected.
+
+Figure 1.1 shows that programming comfort is distributed very similarly in both groups, with most students rating themselves a 3 or 4 and a median of 4 in each group.
+
+Figure 1.2 shows that both groups also have a median math comfort of 4. Students with 9+ courses are more concentrated around 4, while the "8 or fewer" group is more spread out between 3 and 5.
+
+Figure 1.3 shows the gap in stats comfort: about 43% of students with 8 or fewer courses rated their stats comfort a 5, compared to about 23% of students with 9+ courses. Both groups still have a median of 4.
+
+Table 1.2 shows that none of the Wilcoxon rank-sum tests were significant at the 0.05 level (programming p = 0.926, math p = 0.975, stats p = 0.190). We used the Wilcoxon test instead of a t-test or ANOVA because comfort is an ordinal 1-5 rating with only a few distinct values. Overall, we did not find evidence that taking more upper division courses is associated with higher comfort levels. However, most students rated their comfort between 3 and 5 and the sample was small, so small differences may be hard to detect. The course count also does not account for which courses students took.
 
 ### Code chunks
 
@@ -97,52 +101,30 @@ background %>%
   theme_minimal()
 ```
 
-## Useful tips (remove this section)
-
-Due to the visual editor, most common needs for authoring can be met using menu items in the RStudio IDE. For a comprehensive guide to Quarto, see the [documentation](https://quarto.org/docs/guide/); consult the documentation for anything you can't sort out in the IDE.
-
-### Code chunks
-
-Insert code chunks using the *Insert* drop-down menu or `ctrl + alt + I` . By default in this document, codes will not be shown but results will. If you want to change this behavior, add the chunk option `echo: true` as below.
-
 ```{r}
-#| echo: true
-my_df <- tibble(animal = c('snake', 'gecko'),
-                threatening = c(TRUE, FALSE))
-
-my_df
+#Stats comfort by group
+background %>%
+  ggplot(aes(x = course_group, y = stat.comf)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.1, height = 0) +
+  labs(title = "Figure 1.3: Stats Comfort by Upper Division Courses",
+       x = 'Upper Division Courses', y = 'Stats Comfort Level') +
+  theme_minimal()
 ```
 
-Code chunks will be executed in order when the document is rendered, so packages should be loaded at the very beginning of the document
-
-### Rendering tables in markdown
-
-Several functions exist for converting dataframes to markdown tables for nice display. A simple one from the `knitr` package is `knitr::kable()` .
-
 ```{r}
-my_df %>% knitr::kable()
+#Wilcoxon rank-sum test for each comfort type since comfort is a 1-5 rating
+#exact = FALSE because a lot of students gave the same rating (ties)
+prog_test <- wilcox.test(prog.comf ~ course_group, data = background, exact = FALSE)
+math_test <- wilcox.test(math.comf ~ course_group, data = background, exact = FALSE)
+stat_test <- wilcox.test(stat.comf ~ course_group, data = background, exact = FALSE)
+
+#Table 1.2: putting the p-values in one table
+tibble(comfort = c("Programming", "Math", "Stats"),
+       p_value = round(c(prog_test$p.value, math_test$p.value, stat_test$p.value), 3)) %>%
+  knitr::kable(col.names = c("Comfort Type", "p-value"),
+               caption = "Table 1.2: Wilcoxon Rank-Sum Test Results (8 or fewer vs 9+)")
 ```
-
-### Figures
-
-To include any figures not generated by code chunks, use *Insert \> Figure / Image* or `![CAPTION](path/file.ext)` .
-
-Most of the time code chunks producing plots will render fine. However, to adjust sizing or alignment, use the chunk options `fig-width` and `fig-height` . Captions can be added with `fig-cap` .
-
-```{r}
-#| fig-width: 4
-#| fig-height: 3
-#| fig-align: left
-#| fig-cap: A terrible plot.
-
-my_df %>% 
-  ggplot(aes(x = animal, y = threatening)) + 
-  geom_col()
-```
-
-### Links
-
-To include any hyperlinks, use `[display text](url)` .
 
 ## Question #2
 

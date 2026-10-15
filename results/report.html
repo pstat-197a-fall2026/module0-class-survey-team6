@@ -142,14 +142,115 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="question-1">Question #1</h2>
 <section id="findings" class="level3">
 <h3 class="anchored" data-anchor-id="findings">Findings</h3>
+<p>To answer this question, we compared students’ self-reported comfort with programming, math, and statistics (each rated 1-5) across the number of upper division courses they had taken. Only 2 students reported taking 3-5 courses, so we combined the 3-5 and 6-8 groups into a single “8 or fewer” group (21 students) and compared it to the “9+” group (30 students).</p>
+<p>Table 1.1 shows that average comfort levels are nearly identical between the two groups for programming (3.71 vs 3.70) and math (3.95 vs 3.93). Stats comfort was slightly higher for students with 8 or fewer courses (4.29 vs 4.03), which is the opposite of what we expected.</p>
+<p>Figure 1.1 shows that programming comfort is distributed very similarly in both groups, with most students rating themselves a 3 or 4 and a median of 4 in each group.</p>
+<p>Figure 1.2 shows that both groups also have a median math comfort of 4. Students with 9+ courses are more concentrated around 4, while the “8 or fewer” group is more spread out between 3 and 5.</p>
+<p>Figure 1.3 shows the gap in stats comfort: about 43% of students with 8 or fewer courses rated their stats comfort a 5, compared to about 23% of students with 9+ courses. Both groups still have a median of 4.</p>
+<p>Table 1.2 shows that none of the Wilcoxon rank-sum tests were significant at the 0.05 level (programming p = 0.926, math p = 0.975, stats p = 0.190). We used the Wilcoxon test instead of a t-test or ANOVA because comfort is an ordinal 1-5 rating with only a few distinct values. Overall, we did not find evidence that taking more upper division courses is associated with higher comfort levels. However, most students rated their comfort between 3 and 5 and the sample was small, so small differences may be hard to detect. The course count also does not account for which courses students took.</p>
+</section>
+<section id="code-chunks" class="level3">
+<h3 class="anchored" data-anchor-id="code-chunks">Code chunks</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Table 1.1: Average Comfort Level by Group</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Upper Div Courses</th>
+<th style="text-align: right;">Programming</th>
+<th style="text-align: right;">Math</th>
+<th style="text-align: right;">Stats</th>
+<th style="text-align: right;">Students</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">8 or fewer</td>
+<td style="text-align: right;">3.71</td>
+<td style="text-align: right;">3.95</td>
+<td style="text-align: right;">4.29</td>
+<td style="text-align: right;">21</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">9+</td>
+<td style="text-align: right;">3.70</td>
+<td style="text-align: right;">3.93</td>
+<td style="text-align: right;">4.03</td>
+<td style="text-align: right;">30</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Table 1.2: Wilcoxon Rank-Sum Test Results (8 or fewer vs 9+)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Comfort Type</th>
+<th style="text-align: right;">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Programming</td>
+<td style="text-align: right;">0.926</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Math</td>
+<td style="text-align: right;">0.975</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Stats</td>
+<td style="text-align: right;">0.190</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="question-2" class="level2">
+<h2 class="anchored" data-anchor-id="question-2">Question #2</h2>
+<section id="findings-1" class="level3">
+<h3 class="anchored" data-anchor-id="findings-1">Findings</h3>
 <p>Summarize your results. Don’t try to explain every step you took; focus instead on providing the main data analytic outputs – tables and figures – and explaining clearly what they show. Clarify any important decisions you made in obtaining them. You can display codes if you like but it is not necessary.</p>
 </section>
 </section>
 <section id="useful-tips-remove-this-section" class="level2">
 <h2 class="anchored" data-anchor-id="useful-tips-remove-this-section">Useful tips (remove this section)</h2>
 <p>Due to the visual editor, most common needs for authoring can be met using menu items in the RStudio IDE. For a comprehensive guide to Quarto, see the <a href="https://quarto.org/docs/guide/">documentation</a>; consult the documentation for anything you can’t sort out in the IDE.</p>
-<section id="code-chunks" class="level3">
-<h3 class="anchored" data-anchor-id="code-chunks">Code chunks</h3>
+<section id="code-chunks-1" class="level3">
+<h3 class="anchored" data-anchor-id="code-chunks-1">Code chunks</h3>
 <p>Insert code chunks using the <em>Insert</em> drop-down menu or <code>ctrl + alt + I</code> . By default in this document, codes will not be shown but results will. If you want to change this behavior, add the chunk option <code>echo: true</code> as below.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>my_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">animal =</span> <span class="fu">c</span>(<span class="st">'snake'</span>, <span class="st">'gecko'</span>),</span>
@@ -200,7 +301,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="report_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="report_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="384"></p>
 <figcaption>A terrible plot.</figcaption>
 </figure>
 </div>
@@ -212,33 +313,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To include any hyperlinks, use <code>[display text](url)</code> .</p>
 </section>
 </section>
-<section id="question-2" class="level2">
-<h2 class="anchored" data-anchor-id="question-2">Question #2</h2>
-<section id="findings-1" class="level3">
-<h3 class="anchored" data-anchor-id="findings-1">Findings</h3>
+<section id="question-3" class="level2">
+<h2 class="anchored" data-anchor-id="question-3">Question #3</h2>
+<section id="findings-2" class="level3">
+<h3 class="anchored" data-anchor-id="findings-2">Findings</h3>
 <p>Summarize your results. Don’t try to explain every step you took; focus instead on providing the main data analytic outputs – tables and figures – and explaining clearly what they show. Clarify any important decisions you made in obtaining them. You can display codes if you like but it is not necessary.</p>
+<p>Figure 1 shows that predictive modeling was the most popular topic of interest, selected by approximately 43 students, followed by deep learning and neural networks with 39 students. In contrast, algorithms was the least popular topic, selected by approximately 23 students. Overall, students appear most interested in applied data science and machine learning.</p>
+<p>Figure 2 shows three clusters of students based on their data science interests. Cluster 1 (red) is associated with deep learning and image analysis, Cluster 2 (green) with databases, deep learning, and model deployment, and Cluster 3 (blue) with statistics, visualization, and data acquisition. These patterns suggest that students have different areas of interest, although some overlap exists between clusters.</p>
+<p>Figure 3 provides a closer look at the interests distinguishing each cluster. Although predictive modeling was popular across all three clusters, statistical models, visualization, and data acquisition were especially common in Cluster 3, while deep learning and image analysis were more prominent in Cluster 1. Cluster 2 showed broader interest in technical areas, including databases, algorithms, and model deployment. These differences suggest that students share some core interests but vary in their preferred applications and technical focus.</p>
+<p>Figure 4 shows that Python is the most preferred programming language in all three clusters, particularly Cluster 2. Cluster 3 has a substantially higher proportion of students preferring R (about 46%) compared to Clusters 1 and 2. Additionally, Clusters 1 and 2 have larger proportions of students with no language preference, suggesting that programming preferences vary somewhat across clusters but are not entirely determined by topic interests.</p>
+<p>Figure 5 shows that industry-oriented projects are the most popular goal across all three clusters, making up approximately 65–73% of students in each group. Cluster 2 has the highest proportion of students interested in both industry and lab projects, while Cluster 1 has the largest proportion interested in lab-only projects. Overall, project goal preferences are relatively similar across clusters, suggesting that students’ data science interests do not strongly distinguish their preference in industry, lab, or both.</p>
 </section>
-</section>
-<section id="useful-tips-remove-this-section-1" class="level2">
-<h2 class="anchored" data-anchor-id="useful-tips-remove-this-section-1">Useful tips (remove this section)</h2>
-<p>Due to the visual editor, most common needs for authoring can be met using menu items in the RStudio IDE. For a comprehensive guide to Quarto, see the <a href="https://quarto.org/docs/guide/">documentation</a>; consult the documentation for anything you can’t sort out in the IDE.</p>
-<section id="code-chunks-1" class="level3">
-<h3 class="anchored" data-anchor-id="code-chunks-1">Code chunks</h3>
+<section id="code-chunks-2" class="level3">
+<h3 class="anchored" data-anchor-id="code-chunks-2">Code chunks</h3>
 <p>Insert code chunks using the <em>Insert</em> drop-down menu or <code>ctrl + alt + I</code> . By default in this document, codes will not be shown but results will. If you want to change this behavior, add the chunk option <code>echo: true</code> as below.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>my_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">animal =</span> <span class="fu">c</span>(<span class="st">'snake'</span>, <span class="st">'gecko'</span>),</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">threatening =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>my_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 2
-  animal threatening
-  &lt;chr&gt;  &lt;lgl&gt;      
-1 snake  TRUE       
-2 gecko  FALSE      </code></pre>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<p>Code chunks will be executed in order when the document is rendered, so packages should be loaded at the very beginning of the document</p>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="report_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="rendering-tables-in-markdown-1" class="level3">
 <h3 class="anchored" data-anchor-id="rendering-tables-in-markdown-1">Rendering tables in markdown</h3>
@@ -274,7 +405,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="report_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="384"></p>
+<p><img src="report_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="384"></p>
 <figcaption>A terrible plot.</figcaption>
 </figure>
 </div>
@@ -283,110 +414,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="links-1" class="level3">
 <h3 class="anchored" data-anchor-id="links-1">Links</h3>
-<p>To include any hyperlinks, use <code>[display text](url)</code> .</p>
-</section>
-</section>
-<section id="question-3" class="level2">
-<h2 class="anchored" data-anchor-id="question-3">Question #3</h2>
-<section id="findings-2" class="level3">
-<h3 class="anchored" data-anchor-id="findings-2">Findings</h3>
-<p>Summarize your results. Don’t try to explain every step you took; focus instead on providing the main data analytic outputs – tables and figures – and explaining clearly what they show. Clarify any important decisions you made in obtaining them. You can display codes if you like but it is not necessary.</p>
-<p>Figure 1 shows that predictive modeling was the most popular topic of interest, selected by approximately 43 students, followed by deep learning and neural networks with 39 students. In contrast, algorithms was the least popular topic, selected by approximately 23 students. Overall, students appear most interested in applied data science and machine learning.</p>
-<p>Figure 2 shows three clusters of students based on their data science interests. Cluster 1 (red) is associated with deep learning and image analysis, Cluster 2 (green) with databases, deep learning, and model deployment, and Cluster 3 (blue) with statistics, visualization, and data acquisition. These patterns suggest that students have different areas of interest, although some overlap exists between clusters.</p>
-<p>Figure 3 provides a closer look at the interests distinguishing each cluster. Although predictive modeling was popular across all three clusters, statistical models, visualization, and data acquisition were especially common in Cluster 3, while deep learning and image analysis were more prominent in Cluster 1. Cluster 2 showed broader interest in technical areas, including databases, algorithms, and model deployment. These differences suggest that students share some core interests but vary in their preferred applications and technical focus.</p>
-<p>Figure 4 shows that Python is the most preferred programming language in all three clusters, particularly Cluster 2. Cluster 3 has a substantially higher proportion of students preferring R (about 46%) compared to Clusters 1 and 2. Additionally, Clusters 1 and 2 have larger proportions of students with no language preference, suggesting that programming preferences vary somewhat across clusters but are not entirely determined by topic interests.</p>
-<p>Figure 5 shows that industry-oriented projects are the most popular goal across all three clusters, making up approximately 65–73% of students in each group. Cluster 2 has the highest proportion of students interested in both industry and lab projects, while Cluster 1 has the largest proportion interested in lab-only projects. Overall, project goal preferences are relatively similar across clusters, suggesting that students’ data science interests do not strongly distinguish their preference in industry, lab, or both.</p>
-</section>
-<section id="code-chunks-2" class="level3">
-<h3 class="anchored" data-anchor-id="code-chunks-2">Code chunks</h3>
-<p>Insert code chunks using the <em>Insert</em> drop-down menu or <code>ctrl + alt + I</code> . By default in this document, codes will not be shown but results will. If you want to change this behavior, add the chunk option <code>echo: true</code> as below.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="report_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="report_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="report_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="report_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="report_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="rendering-tables-in-markdown-2" class="level3">
-<h3 class="anchored" data-anchor-id="rendering-tables-in-markdown-2">Rendering tables in markdown</h3>
-<p>Several functions exist for converting dataframes to markdown tables for nice display. A simple one from the <code>knitr</code> package is <code>knitr::kable()</code> .</p>
-<div class="cell">
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">animal</th>
-<th style="text-align: left;">threatening</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">snake</td>
-<td style="text-align: left;">TRUE</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">gecko</td>
-<td style="text-align: left;">FALSE</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</section>
-<section id="figures-2" class="level3">
-<h3 class="anchored" data-anchor-id="figures-2">Figures</h3>
-<p>To include any figures not generated by code chunks, use <em>Insert &gt; Figure / Image</em> or <code>![CAPTION](path/file.ext)</code> .</p>
-<p>Most of the time code chunks producing plots will render fine. However, to adjust sizing or alignment, use the chunk options <code>fig-width</code> and <code>fig-height</code> . Captions can be added with <code>fig-cap</code> .</p>
-<div class="cell" data-layout-align="left">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="report_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="384"></p>
-<figcaption>A terrible plot.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="links-2" class="level3">
-<h3 class="anchored" data-anchor-id="links-2">Links</h3>
 <p>To include any hyperlinks, use <code>[display text](url)</code> .</p>
 </section>
 </section>

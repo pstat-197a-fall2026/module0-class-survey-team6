@@ -352,64 +352,71 @@ display: none;
 </div>
 
 
-<p>Is there an association between comfort levels and courses taken? -
-Variables: .comf levels as integers and upper_div_courses (the factor),
-and potentially the list of courses - Data Prep: Pairing the list of
-courses with the same ID as the comfort levels and count of upper div
-courses - Summaries/Plots and Others: Chi-Squared for categorical
-comfort levels and upper_div_courses or ANOVA for continuous comfort
-levels and upper_div_courses. Can also visualize with boxplots or bar
-charts. - Limitation: Most of the upper div courses factor is
-homogenous, with very few in the smallest range, which might make it
-difficult to detect differences.</p>
-<p>Is there an association between Programming language preference and
-Lab vs Industry interest or a particular industry? - Variables: type,
-language, response_id, domains All of these are in interest-clean.csv -
-Data Prep: Probably remove those with neither/both to make the
-comparison easier and binary (so filter into just lab and ind) -
-Summaries/Plots and Other things: – Contingency table and Chi-Sq Test
-for independence to test whether programming language preference and
-type are associated (if our p value is less than 0.05 we reject ind.) –
-Proportion filled bar chart would be cool to compare breakdowns -
-Limitation: Excluding both in this scenario drops some data.</p>
-<p>Are there distinct “types” of students hiding in the interest data?
-1. Variables: areas and language from interest-clean.csv. The areas
-variable contains students’ selected data science interests, and
-language records their programming language preferences.</p>
+<p>Question #1 : Is there an association between comfort levels and
+courses taken? - Variables: prog.comf, math.comf, stat.comf (comfort
+levels 1-5) and upper_div_courses, all from background-clean.csv - Data
+Prep: Only 2 students were in the 3-5 group, so we combined 3-5 and 6-8
+into “8 or fewer” and compared it against “9+” (21 vs 30 students) -
+Summaries/Plots and Others: Table of average comfort by group, a boxplot
+with jittered points for each comfort type, and a Wilcoxon rank-sum test
+for each comfort type since comfort is an ordinal 1-5 rating (used
+instead of Chi-Square/ANOVA because of small groups and few distinct
+rating values) - Limitation: Most students are in the 9+ group and most
+comfort ratings are 3-5, which makes it difficult to detect differences.
+Course count also doesn’t tell us which courses were taken.</p>
+<p>Question #2 :Is there an association between programming language
+preference and a student’s career track orientation (Industry-only
+vs. Lab-inclined)? 1. Variables: “type”, “language”, “response_id”,
+“domains” - Fixed Responses: Language choices are strictly “Python”,
+“R”, and “No preference”.</p>
 <ol start="2" style="list-style-type: decimal">
-<li>Data Prep: Split the comma separated interest areas into individual
-rows, remove extra spaces, filter out missing or empty interests, and
-covert the interest areas into binary yes/no columns, where 1 indicates
-a selected interest and 0 indicates an unselected interest.</li>
-<li>Summaries/Plots and Other things:
-<ul>
-<li>Create a bar char showing the number of students selecting each data
-science interest area</li>
-<li>Use k-means clustering with three clusters to group students based
-on their binary interest selections</li>
-<li>Use PCA to reduce the interest data to two dimensions and create a
-scatterplot to visualize the clusters</li>
-<li>Create a heat map showing the percentage of students in each cluster
-who selected each interest area.</li>
-<li>Create a proportion-filled bar chart to compare programming language
-preferences across the clusters</li>
-</ul></li>
-<li>Key Choices to Check: The code sets the number of clusters to three
-and uses the first two principal components for visualization. We should
-examine the heat map to determine whether the clusters represent
-different interest profiles. The cluster assignments must also be
-correctly connected to the student data before creating the heat map and
-comparing programming language preferences.</li>
-<li>Limitation:</li>
+<li><p>Data Prep: Recode type into two groups: “Industry Only” (ind)
+versus “Lab-Inclined” (combining lab and both).</p></li>
+<li><p>Summaries &amp; Plots: <span class="math inline">\(2 \times
+3\)</span> contingency table, Chi-Square test of independence (with
+Fisher’s Exact Test fallback as expected cell counts remain sparse for a
+box), and a 100% proportion-filled bar chart.</p></li>
+<li><p>Limitation: Grouping students who chose “both” with “lab”
+balances group totals so Chi-Square can be ran, but groups flexible
+students as having an affinity for academic lab work.</p></li>
 </ol>
-<ul>
-<li>Method: turn the 11 areas options into yes/no columns and cluster
-the students (hierarchical clustering or k-modes), or reduce with
-PCA/MCA and plot. What I’d look for: whether a “modern ML” group (deep
-learning, images, NLP, deployment) separates from a “classical stats”
-group (inference, time series, visualization). Follow-up: check whether
-the clusters differ in language preference or in industry vs. lab.</li>
-</ul>
+<p>Question #3 : Are there distinct “types” of students hiding in the
+interest data? 1. Variables: The code reads background-clean.csv and
+interest-clean.csv. It uses areas from the interest dataset to analyze
+students’ data science interests, language to compare programming
+language preferences, and type to compare project goal preferences. A
+student row number is created from the order of rows in interest to
+connect each student’s interests and cluster assignment to their
+language and project goal preferences. 2. Data Prep: The code splits the
+comma-separated areas responses into individual rows, removes the word
+“generally” and extra spaces, and filters out missing or empty interest
+labels. It counts the cleaned interest areas and creates binary columns
+indicating whether each student selected each interest. The code uses
+these binary columns as input for k-means clustering and PCA. 3.
+Summaries/Plots and Other things: - Interest bar chart: Shows the number
+of students selecting each data science interest area. - K-means
+clustering: Groups students into three clusters based on their binary
+interest selections, using set.seed(123). - PCA scatterplot: Uses the
+first two principal components to visualize the students’ clusters. -
+Interest heat map: Shows the mean of each binary interest variable
+within each cluster, expressed as a percentage, to compare interest
+selections across clusters. - Programming language bar chart: Uses
+proportion-filled bars to compare programming language preferences
+across the three clusters. - Project goal bar chart: Uses
+proportion-filled bars to compare project goal preferences, represented
+by type, across the three clusters. 4. Key Choices to Check: The code
+sets the number of k-means clusters to three and uses the first two
+principal components for the scatterplot. The heat map calculates the
+mean of each binary interest variable within each cluster. The language
+and project goal comparisons connect cluster assignments to students
+using row numbers. These comparisons assume that the row order in the
+interest dataset remains consistent when the cluster assignments are
+joined back to the student records. 5. Limitation: The analysis uses
+k-means clustering on binary interest selections with three clusters
+specified in advance. The resulting clusters depend on this choice, and
+the PCA scatterplot only displays the first two principal components.
+The analysis is exploratory and does not establish why students select
+particular interests or preferences.</p>
 
 
 

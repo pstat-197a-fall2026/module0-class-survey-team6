@@ -1,17 +1,18 @@
 Question #1 : Is there an association between comfort levels and courses taken?
-  - Variables: .comf levels as integers and upper_div_courses (the factor), and potentially the list of courses
-  - Data Prep: Pairing the list of courses with the same ID as the comfort levels and count of upper div courses
-  - Summaries/Plots and Others: Chi-Squared for categorical comfort levels and upper_div_courses or ANOVA for continuous comfort levels and upper_div_courses. Can also visualize with boxplots or bar charts.
-  - Limitation: Most of the upper div courses factor is homogenous, with very few in the smallest range, which might make it difficult to detect differences.
+  - Variables: prog.comf, math.comf, stat.comf (comfort levels 1-5) and upper_div_courses, all from background-clean.csv
+  - Data Prep: Only 2 students were in the 3-5 group, so we combined 3-5 and 6-8 into "8 or fewer" and compared it against "9+" (21 vs 30 students)
+  - Summaries/Plots and Others: Table of average comfort by group, a boxplot with jittered points for each comfort type, and a Wilcoxon rank-sum test for each comfort type since comfort is an ordinal 1-5 rating (used instead of Chi-Square/ANOVA because of small groups and few distinct rating values)
+  - Limitation: Most students are in the 9+ group and most comfort ratings are 3-5, which makes it difficult to detect differences. Course count also doesn't tell us which courses were taken.
 
-Question #2 :Is there an association between Programming language preference and Lab vs Industry interest or a particular industry?
-  - Variables: type, language, response_id, domains 
-    All of these are in interest-clean.csv
-  - Data Prep: Probably remove those with neither/both to make the comparison easier and binary (so filter into just lab and ind)
-  - Summaries/Plots and Other things:
-  -- Contingency table and Chi-Sq Test for independence to test whether programming language preference and type are associated (if our p value is less than 0.05 we reject ind.)
-  -- Proportion filled bar chart would be cool to compare breakdowns
-  - Limitation: Excluding both in this scenario drops some data.
+Question #2 :Is there an association between programming language preference and a student's career track orientation (Industry-only vs. Lab-inclined)?
+1. Variables: "type", "language", "response_id", "domains"
+- Fixed Responses: Language choices are strictly "Python", "R", and "No preference".
+
+2. Data Prep: Recode type into two groups: "Industry Only" (ind) versus "Lab-Inclined" (combining lab and both).
+
+3. Summaries & Plots: $2 \times 3$ contingency table, Chi-Square test of independence (with Fisher's Exact Test fallback as expected cell counts remain sparse for a box), and a 100% proportion-filled bar chart.
+
+4. Limitation: Grouping students who chose "both" with "lab" balances group totals so Chi-Square can be ran, but groups flexible students as having an affinity for academic lab work.
 
 Question #3 : Are there distinct "types" of students hiding in the interest data?
 1. Variables: The code reads background-clean.csv and interest-clean.csv. It uses areas from the interest dataset to analyze students' data science interests, language to compare programming language preferences, and type to compare project goal preferences. A student row number is created from the order of rows in interest to connect each student's interests and cluster assignment to their language and project goal preferences.

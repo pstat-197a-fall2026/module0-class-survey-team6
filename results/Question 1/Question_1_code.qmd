@@ -11,15 +11,15 @@ execute:
 
 "Is there an association between comfort levels and the number of upper division courses taken?"
 
-- Variables: "prog.comf", "math.comf", "stat.comf", "upper_div_courses"
+-   Variables: "prog.comf", "math.comf", "stat.comf", "upper_div_courses"
 
-- All of these are in background-clean.csv
+-   All of these are in background-clean.csv
 
-- Data Prep: Only 2 students are in the 3-5 group, so we combine 3-5 and 6-8 into "8 or fewer" and compare against "9+".
+-   Data Prep: Only 2 students are in the 3-5 group, so we combine 3-5 and 6-8 into "8 or fewer" and compare against "9+".
 
-- Summaries & Plots: Table of average comfort by group, boxplots for each comfort type, and a Wilcoxon rank-sum test for each comfort type since comfort is a 1-5 rating.
+-   Summaries & Plots: Table of average comfort by group, boxplots for each comfort type, and a Wilcoxon rank-sum test for each comfort type since comfort is a 1-5 rating.
 
-- Limitation: Merging groups loses some detail, and comfort is self-reported.
+-   Limitation: Merging groups loses some detail, and comfort is self-reported.
 
 ```{r}
 library(tidyverse)
@@ -88,3 +88,21 @@ wilcox.test(prog.comf ~ course_group, data = background, exact = FALSE)
 wilcox.test(math.comf ~ course_group, data = background, exact = FALSE)
 wilcox.test(stat.comf ~ course_group, data = background, exact = FALSE)
 ```
+
+**Results**
+
+-   The average comfort levels are almost the same for both groups. Programming (3.71 vs 3.70) and math (3.95 vs 3.93) are basically equal, and both groups have a median of 4 for all three comfort types.
+
+-   Stats comfort is the only one with a noticeable gap, and it goes the opposite way from what we expected. The "8 or fewer" group averaged 4.29 and the "9+" group averaged 4.03. About 43% (9 of 21) of the "8 or fewer" group rated their stats comfort a 5, compared to about 23% (7 of 30) of the "9+" group.
+
+-   None of the Wilcoxon tests were significant at the 0.05 level (programming p = 0.93, math p = 0.98, stats p = 0.19). So we did not find evidence that taking more upper division courses is associated with higher comfort levels.
+
+**Limitations**
+
+-   Only 2 students were in the 3-5 group, so we had to merge it with 6-8. This means we can't say anything about students with very few upper division courses.
+
+-   Comfort is self-reported on a 1-5 scale, and most students answered 3, 4, or 5. With so little spread, it's hard to find differences between groups.
+
+-   The sample is small (51 students), so the tests may not have enough power to detect a small difference.
+
+-   Number of courses doesn't tell us which courses were taken. A student with 9+ courses mostly outside of stats might feel less comfortable with stats than someone with fewer but more relevant courses, which could explain the stats result.

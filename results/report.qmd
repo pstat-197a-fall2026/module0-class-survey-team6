@@ -1,7 +1,7 @@
 ---
 title: "Analysis of class surveys"
 subtitle: "If you want a subtitle put it here"
-author: "List names here"
+author: "Kiera Doan, Luke Drushell, Miles Reynolds, Praveen last_name, Karla last_name"
 date: last-modified
 published-title: "Updated"
 editor: visual
@@ -25,9 +25,17 @@ library(tidyverse)
 
 Write a one-paragraph abstract summarizing what you did and your findings. It need not be comprehensive; try to highlight the most important or interesting outcomes.
 
+When looking at whether comfort levels and course counts, we failed to find correlation. This was also the case when considering if students with interest in Lab vs Industry positions favored either Python or R. \[smth about question 3\]. The greatest obstacle in this research was the small sample size, which made rejecting null hypothesis challenging.
+
 ## Data description
 
 Write a brief description of the dataset. Your description should cover how data were obtained, sample characteristics, and measurements taken. It does not need to be exhaustive, but sufficiently detailed to convey a clear high-level understanding of the dataset. You can utilize bullet points or tables if you feel it would help improve clarity.
+
+The data was obtained from the PSTAT197A course survey, which was sent out to students at the beginning of the 2026 fall quarter. The survey was anonymized and consisted of two parts: a background survey and an interest survey. The background survey collected information on students' comfort levels with programming, mathematics, and statistics, as well as the number of upper division courses they had taken. The interest survey gathered data on students' preferred areas of study within data science, their programming language preferences, and their career track orientation (Industry-only vs. Lab-inclined). Given that students were given the option to have their responses included in the analysis, the sample consisted of 51 responses for the background survey and 49 responses for the interest survey.
+
+One important characteristic is that the sample size is small, which limits the generalizability of the findings. Additionally, the survey responses are self-reported, which may introduce bias or inaccuracies in the data. Such as with proficiency, where students may overestimate or underestimate their abilities.
+
+The data is that it includes both categorical and discrete numerical variables. Comfort levels are measured on a 1-5 scale, while the number of upper division courses is a categorical variable with three levels (3-5, 6-8, 9+). Programming language preference is a categorical variable with three levels (Python, R, No preference), and career track orientation is a binary variable (Industry-only vs. Lab-inclined).
 
 ## Questions of interest
 
@@ -35,15 +43,15 @@ Indicate the questions your analysis addresses. These should map one-to-one to y
 
 For example:
 
-> *We sought to understand the relationship between coursework preparation, self-assessed technical abilities, and comfort level with technical skills. We also sought to understand whether the relationships differed depending on having had prior research experience. Our analysis addressed three questions:*
+> We explored how students’ academic experiences and personal interests relate to their experiences and future goals in data science. Specifically, we investigated the connection between coursework and technical confidence, the relationship between programming preferences and career plans, and the possibility of identifying common patterns in students’ areas of interest. These questions guided our analysis:
 >
-> 1.  *How should the coursework histories of students in the class be ordered from less preparation to extensive preparation?*
-> 2.  *Is coursework preparation associated with increased self-assessed technical skill and comfort within the sample?*
-> 3.  *Does prior research experience appear to be a substitute for coursework preparation with respect to self-assessed technical skill and comfort?*
+> 1.  *Is coursework preparation associated with students' self reported comfort levels with technical skills?*
+> 2.  *Is programming language preference associated with students' career track orientation (industry-only vs lab-inclined)?*
+> 3.  *Are there underlying patterns in students' data science interests that reveal distinct groups of students?*
 
-Notice that the questions are precise but not overly technical.
+## Question #1
 
-## Findings
+### Findings
 
 Summarize your results. Don't try to explain every step you took; focus instead on providing the main data analytic outputs -- tables and figures -- and explaining clearly what they show. Clarify any important decisions you made in obtaining them. You can display codes if you like but it is not necessary.
 
@@ -64,6 +72,240 @@ my_df
 ```
 
 Code chunks will be executed in order when the document is rendered, so packages should be loaded at the very beginning of the document
+
+### Rendering tables in markdown
+
+Several functions exist for converting dataframes to markdown tables for nice display. A simple one from the `knitr` package is `knitr::kable()` .
+
+```{r}
+my_df %>% knitr::kable()
+```
+
+### Figures
+
+To include any figures not generated by code chunks, use *Insert \> Figure / Image* or `![CAPTION](path/file.ext)` .
+
+Most of the time code chunks producing plots will render fine. However, to adjust sizing or alignment, use the chunk options `fig-width` and `fig-height` . Captions can be added with `fig-cap` .
+
+```{r}
+#| fig-width: 4
+#| fig-height: 3
+#| fig-align: left
+#| fig-cap: A terrible plot.
+
+my_df %>% 
+  ggplot(aes(x = animal, y = threatening)) + 
+  geom_col()
+```
+
+### Links
+
+To include any hyperlinks, use `[display text](url)` .
+
+## Question #2
+
+### Findings
+
+Summarize your results. Don't try to explain every step you took; focus instead on providing the main data analytic outputs -- tables and figures -- and explaining clearly what they show. Clarify any important decisions you made in obtaining them. You can display codes if you like but it is not necessary.
+
+## Useful tips (remove this section)
+
+Due to the visual editor, most common needs for authoring can be met using menu items in the RStudio IDE. For a comprehensive guide to Quarto, see the [documentation](https://quarto.org/docs/guide/); consult the documentation for anything you can't sort out in the IDE.
+
+### Code chunks
+
+Insert code chunks using the *Insert* drop-down menu or `ctrl + alt + I` . By default in this document, codes will not be shown but results will. If you want to change this behavior, add the chunk option `echo: true` as below.
+
+```{r}
+#| echo: true
+my_df <- tibble(animal = c('snake', 'gecko'),
+                threatening = c(TRUE, FALSE))
+
+my_df
+```
+
+Code chunks will be executed in order when the document is rendered, so packages should be loaded at the very beginning of the document
+
+### Rendering tables in markdown
+
+Several functions exist for converting dataframes to markdown tables for nice display. A simple one from the `knitr` package is `knitr::kable()` .
+
+```{r}
+my_df %>% knitr::kable()
+```
+
+### Figures
+
+To include any figures not generated by code chunks, use *Insert \> Figure / Image* or `![CAPTION](path/file.ext)` .
+
+Most of the time code chunks producing plots will render fine. However, to adjust sizing or alignment, use the chunk options `fig-width` and `fig-height` . Captions can be added with `fig-cap` .
+
+```{r}
+#| fig-width: 4
+#| fig-height: 3
+#| fig-align: left
+#| fig-cap: A terrible plot.
+
+my_df %>% 
+  ggplot(aes(x = animal, y = threatening)) + 
+  geom_col()
+```
+
+### Links
+
+To include any hyperlinks, use `[display text](url)` .
+
+## Question #3
+
+### Findings
+
+Summarize your results. Don't try to explain every step you took; focus instead on providing the main data analytic outputs -- tables and figures -- and explaining clearly what they show. Clarify any important decisions you made in obtaining them. You can display codes if you like but it is not necessary.
+
+Figure 1 shows that predictive modeling was the most popular topic of interest, selected by approximately 43 students, followed by deep learning and neural networks with 39 students. In contrast, algorithms was the least popular topic, selected by approximately 23 students. Overall, students appear most interested in applied data science and machine learning.
+
+Figure 2 shows three clusters of students based on their data science interests. Cluster 1 (red) is associated with deep learning and image analysis, Cluster 2 (green) with databases, deep learning, and model deployment, and Cluster 3 (blue) with statistics, visualization, and data acquisition. These patterns suggest that students have different areas of interest, although some overlap exists between clusters.
+
+Figure 3 provides a closer look at the interests distinguishing each cluster. Although predictive modeling was popular across all three clusters, statistical models, visualization, and data acquisition were especially common in Cluster 3, while deep learning and image analysis were more prominent in Cluster 1. Cluster 2 showed broader interest in technical areas, including databases, algorithms, and model deployment. These differences suggest that students share some core interests but vary in their preferred applications and technical focus.
+
+Figure 4 shows that Python is the most preferred programming language in all three clusters, particularly Cluster 2. Cluster 3 has a substantially higher proportion of students preferring R (about 46%) compared to Clusters 1 and 2. Additionally, Clusters 1 and 2 have larger proportions of students with no language preference, suggesting that programming preferences vary somewhat across clusters but are not entirely determined by topic interests.
+
+Figure 5 shows that industry-oriented projects are the most popular goal across all three clusters, making up approximately 65–73% of students in each group. Cluster 2 has the highest proportion of students interested in both industry and lab projects, while Cluster 1 has the largest proportion interested in lab-only projects. Overall, project goal preferences are relatively similar across clusters, suggesting that students’ data science interests do not strongly distinguish their preference in industry, lab, or both.
+
+### Code chunks
+
+Insert code chunks using the *Insert* drop-down menu or `ctrl + alt + I` . By default in this document, codes will not be shown but results will. If you want to change this behavior, add the chunk option `echo: true` as below.
+
+```{r}
+background <- read_csv('../data/background-clean.csv', show_col_types = FALSE)
+interest <- read_csv('../data/interest-clean.csv', show_col_types = FALSE)
+
+# Split the interests by comma, clean the labels, and count them
+interest_counts <- interest %>%
+  separate_rows(areas, sep = ",") %>%
+  mutate(areas = str_remove(areas, ",?\\s*generally")) %>%
+  mutate(areas = str_trim(areas)) %>%
+  filter(!is.na(areas), areas != "", areas != "generally") %>%
+  count(areas, sort = TRUE)
+
+# Graph the interests
+ggplot(interest_counts, aes(x = reorder(areas, n), y = n)) +
+  geom_col(fill = "pink", color = "black") +
+  coord_flip() +
+  labs(
+    title = "Figure #1: Topic Interests Among Students",
+    x = "Topic Interests",
+    y = "Number of Students"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+#What areas do students normally chose together? 
+interest_long <- interest %>%
+  mutate(student = row_number()) %>%
+  separate_rows(areas, sep = ",") %>%
+  mutate(areas = str_trim(areas)) %>%
+  filter(!is.na(areas), areas != "", areas != "generally") %>%
+  distinct(student, areas)
+
+interest_binary <- interest_long %>%
+  mutate(selected = 1) %>%
+  pivot_wider(
+    names_from = areas,
+    values_from = selected,
+    values_fill = 0
+  )
+
+interest_matrix <- interest_binary %>%
+  select(-student)
+
+set.seed(123)
+clusters <- kmeans(interest_matrix, centers = 3)
+interest_binary$cluster <- clusters$cluster
+
+cluster_summary <- interest_binary %>%
+  select(-student) %>%
+  group_by(cluster) %>%
+  summarise(across(everything(), mean), .groups = "drop")
+
+pca <- prcomp(interest_matrix)
+cluster_plot <- as.data.frame(pca$x[, 1:2])
+cluster_plot$cluster <- as.factor(clusters$cluster)
+
+ggplot(cluster_plot, aes(x = PC1, y = PC2, color = cluster)) +
+  geom_point(size = 3) +
+  labs(
+    title = "Figure #2: Student Clusters Based on Data Science Interests",
+    x = "Principal Component 1",
+    y = "Principal Component 2",
+    color = "Cluster"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+#What do the clusters mean 
+cluster_graph <- cluster_summary %>%
+  pivot_longer(
+    cols = -cluster,
+    names_to = "Interest",
+    values_to = "Percentage"
+  )
+ggplot(cluster_graph, aes(x = factor(cluster), y = Interest,
+                          fill = Percentage)) +
+  geom_tile(color = "black") +
+  geom_text(aes(label = paste0(round(Percentage * 100), "%")),
+            size = 3) +
+  scale_fill_gradient(low = "white", high = "steelblue") +
+  labs(
+    title = "Figure #3: Data Science Interests by Cluster",
+    x = "Cluster",
+    y = "Data Science Interest",
+    fill = "Proportion"
+  ) +
+  theme_minimal()
+
+#What language does every cluster prefer 
+interest_binary$cluster <- clusters$cluster
+interest_language <- interest %>%
+  mutate(student = row_number()) %>%
+  left_join(
+    interest_binary %>% select(student, cluster),
+    by = "student"
+  )
+ggplot(interest_language,
+       aes(x = factor(cluster), fill = language)) +
+  geom_bar(position = "fill", color = "black") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(
+    title = "Figure #4: Programming Language Preference by Cluster",
+    x = "Cluster",
+    y = "Percentage of Students",
+    fill = "Language"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+# Compare project goals across clusters
+interest_goals <- interest %>%
+  mutate(student = row_number()) %>%
+  left_join(
+    interest_binary %>% select(student, cluster),
+    by = "student"
+  )
+
+ggplot(interest_goals, aes(x = factor(cluster), fill = type)) +
+  geom_bar(position = "fill", color = "black") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(
+    title = "Figure #5: Project Goal Preference by Cluster",
+    x = "Cluster",
+    y = "Percentage of Students",
+    fill = "Project Goal"
+  ) +
+  theme_minimal()
+```
 
 ### Rendering tables in markdown
 

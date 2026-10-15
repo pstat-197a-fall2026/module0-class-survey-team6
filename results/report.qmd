@@ -1,5 +1,5 @@
 ---
-title: "Analysis of class surveys"
+title: "Team Six Analysis of class surveys"
 subtitle: "If you want a subtitle put it here"
 author: "Kiera Doan, Luke Drushell, Miles Reynolds, Praveen Arunshankar, Karla last_name"
 date: last-modified

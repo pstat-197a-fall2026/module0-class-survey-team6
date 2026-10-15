@@ -63,6 +63,18 @@ background <- background %>%
   mutate(course_group = ifelse(upper_div_courses == "9+", "9+", "8 or fewer"))
 ```
 
+```{r}
+#Table 1.1: average comfort level for each group
+background %>%
+  group_by(course_group) %>%
+  summarise(prog = round(mean(prog.comf), 2),
+            math = round(mean(math.comf), 2),
+            stat = round(mean(stat.comf), 2),
+            n = n()) %>%
+  knitr::kable(col.names = c("Upper Div Courses", "Programming", "Math", "Stats", "Students"),
+               caption = "Table 1.1: Average Comfort Level by Group")
+```
+
 ## Useful tips (remove this section)
 
 Due to the visual editor, most common needs for authoring can be met using menu items in the RStudio IDE. For a comprehensive guide to Quarto, see the [documentation](https://quarto.org/docs/guide/); consult the documentation for anything you can't sort out in the IDE.

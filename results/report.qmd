@@ -25,6 +25,8 @@ library(tidyverse)
 
 Write a one-paragraph abstract summarizing what you did and your findings. It need not be comprehensive; try to highlight the most important or interesting outcomes.
 
+When looking at whether comfort levels and course counts, we failed to find correlation. This was also the case when considering if students with interest in Lab vs Industry positions favored either Python or R. \[smth about question 3\]. The greatest obstacle in this research was the small sample size, which made rejecting null hypothesis challenging.
+
 ## Data description
 
 Write a brief description of the dataset. Your description should cover how data were obtained, sample characteristics, and measurements taken. It does not need to be exhaustive, but sufficiently detailed to convey a clear high-level understanding of the dataset. You can utilize bullet points or tables if you feel it would help improve clarity.

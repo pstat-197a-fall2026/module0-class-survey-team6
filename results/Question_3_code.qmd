@@ -39,8 +39,6 @@ ggplot(interest_counts, aes(x = reorder(areas, n), y = n)) +
 ```
 
 ```{r}
-#I redid this so can someone please run it to make sure it works on their end. It was working when I ran the code but when I tried to render it it stopped. I finally got it to work but can someone else please take a look (and delete this comment after)
-
 #What areas do students normally chose together? 
 interest_long <- interest %>%
   mutate(student = row_number()) %>%

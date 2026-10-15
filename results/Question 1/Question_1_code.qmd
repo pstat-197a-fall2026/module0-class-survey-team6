@@ -88,3 +88,11 @@ wilcox.test(prog.comf ~ course_group, data = background, exact = FALSE)
 wilcox.test(math.comf ~ course_group, data = background, exact = FALSE)
 wilcox.test(stat.comf ~ course_group, data = background, exact = FALSE)
 ```
+
+**Results**
+
+-   The average comfort levels are almost the same for both groups. Programming (3.71 vs 3.70) and math (3.95 vs 3.93) are basically equal, and both groups have a median of 4 for all three comfort types.
+
+-   Stats comfort is the only one with a noticeable gap, and it goes the opposite way from what we expected. The "8 or fewer" group averaged 4.29 and the "9+" group averaged 4.03. About 43% (9 of 21) of the "8 or fewer" group rated their stats comfort a 5, compared to about 23% (7 of 30) of the "9+" group.
+
+-   None of the Wilcoxon tests were significant at the 0.05 level (programming p = 0.93, math p = 0.98, stats p = 0.19). So we did not find evidence that taking more upper division courses is associated with higher comfort levels.

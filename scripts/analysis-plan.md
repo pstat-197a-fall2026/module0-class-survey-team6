@@ -1,8 +1,8 @@
 Question #1 : Is there an association between comfort levels and courses taken?
-  - Variables: .comf levels as integers and upper_div_courses (the factor), and potentially the list of courses
-  - Data Prep: Pairing the list of courses with the same ID as the comfort levels and count of upper div courses
-  - Summaries/Plots and Others: Chi-Squared for categorical comfort levels and upper_div_courses or ANOVA for continuous comfort levels and upper_div_courses. Can also visualize with boxplots or bar charts.
-  - Limitation: Most of the upper div courses factor is homogenous, with very few in the smallest range, which might make it difficult to detect differences.
+  - Variables: prog.comf, math.comf, stat.comf (comfort levels 1-5) and upper_div_courses, all from background-clean.csv
+  - Data Prep: Only 2 students were in the 3-5 group, so we combined 3-5 and 6-8 into "8 or fewer" and compared it against "9+" (21 vs 30 students)
+  - Summaries/Plots and Others: Table of average comfort by group, a boxplot with jittered points for each comfort type, and a Wilcoxon rank-sum test for each comfort type since comfort is an ordinal 1-5 rating (used instead of Chi-Square/ANOVA because of small groups and few distinct rating values)
+  - Limitation: Most students are in the 9+ group and most comfort ratings are 3-5, which makes it difficult to detect differences. Course count also doesn't tell us which courses were taken.
 
 Question #2 :Is there an association between Programming language preference and Lab vs Industry interest or a particular industry?
   - Variables: type, language, response_id, domains 

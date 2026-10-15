@@ -108,6 +108,20 @@ background %>%
   theme_minimal()
 ```
 
+```{r}
+#Wilcoxon rank-sum test for each comfort type since comfort is a 1-5 rating
+#exact = FALSE because a lot of students gave the same rating (ties)
+prog_test <- wilcox.test(prog.comf ~ course_group, data = background, exact = FALSE)
+math_test <- wilcox.test(math.comf ~ course_group, data = background, exact = FALSE)
+stat_test <- wilcox.test(stat.comf ~ course_group, data = background, exact = FALSE)
+
+#Table 1.2: putting the p-values in one table
+tibble(comfort = c("Programming", "Math", "Stats"),
+       p_value = round(c(prog_test$p.value, math_test$p.value, stat_test$p.value), 3)) %>%
+  knitr::kable(col.names = c("Comfort Type", "p-value"),
+               caption = "Table 1.2: Wilcoxon Rank-Sum Test Results (8 or fewer vs 9+)")
+```
+
 ## Useful tips (remove this section)
 
 Due to the visual editor, most common needs for authoring can be met using menu items in the RStudio IDE. For a comprehensive guide to Quarto, see the [documentation](https://quarto.org/docs/guide/); consult the documentation for anything you can't sort out in the IDE.

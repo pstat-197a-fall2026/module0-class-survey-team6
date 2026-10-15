@@ -51,7 +51,17 @@ We explored how students’ academic experiences and personal interests relate t
 
 ### Findings
 
-Summarize your results. Don't try to explain every step you took; focus instead on providing the main data analytic outputs -- tables and figures -- and explaining clearly what they show. Clarify any important decisions you made in obtaining them. You can display codes if you like but it is not necessary.
+To answer this question, we compared students' self-reported comfort with programming, math, and statistics (each rated 1-5) across the number of upper division courses they had taken. Only 2 students reported taking 3-5 courses, so we combined the 3-5 and 6-8 groups into a single "8 or fewer" group (21 students) and compared it to the "9+" group (30 students).
+
+Table 1.1 shows that average comfort levels are nearly identical between the two groups for programming (3.71 vs 3.70) and math (3.95 vs 3.93). Stats comfort was slightly higher for students with 8 or fewer courses (4.29 vs 4.03), which is the opposite of what we expected.
+
+Figure 1.1 shows that programming comfort is distributed very similarly in both groups, with most students rating themselves a 3 or 4 and a median of 4 in each group.
+
+Figure 1.2 shows that both groups also have a median math comfort of 4. Students with 9+ courses are more concentrated around 4, while the "8 or fewer" group is more spread out between 3 and 5.
+
+Figure 1.3 shows the gap in stats comfort: about 43% of students with 8 or fewer courses rated their stats comfort a 5, compared to about 23% of students with 9+ courses. Both groups still have a median of 4.
+
+Table 1.2 shows that none of the Wilcoxon rank-sum tests were significant at the 0.05 level (programming p = 0.926, math p = 0.975, stats p = 0.190). We used the Wilcoxon test instead of a t-test or ANOVA because comfort is an ordinal 1-5 rating with only a few distinct values. Overall, we did not find evidence that taking more upper division courses is associated with higher comfort levels. However, most students rated their comfort between 3 and 5 and the sample was small, so small differences may be hard to detect. The course count also does not account for which courses students took.
 
 ### Code chunks
 

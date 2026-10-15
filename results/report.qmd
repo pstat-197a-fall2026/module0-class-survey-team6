@@ -1,7 +1,7 @@
 ---
 title: "Analysis of class surveys"
 subtitle: "If you want a subtitle put it here"
-author: "Kiera Doan, Luke Drushell, Miles Reynolds, Praveen __, Karla __"
+author: "Kiera Doan, Luke Drushell, Miles Reynolds, Praveen last_name, Karla last_name"
 date: last-modified
 published-title: "Updated"
 editor: visual
@@ -35,7 +35,7 @@ The data was obtained from the PSTAT197A course survey, which was sent out to st
 
 One important characteristic is that the sample size is small, which limits the generalizability of the findings. Additionally, the survey responses are self-reported, which may introduce bias or inaccuracies in the data. Such as with proficiency, where students may overestimate or underestimate their abilities.
 
-The data is that it includes both categorical and discrete numerical variables. Comfort levels are measured on a 1-5 scale, while the number of upper division courses is a categorical variable with three levels (0-2, 3-5, 6-8, 9+). Programming language preference is a categorical variable with three levels (Python, R, No preference), and career track orientation is a binary variable (Industry-only vs. Lab-inclined).
+The data is that it includes both categorical and discrete numerical variables. Comfort levels are measured on a 1-5 scale, while the number of upper division courses is a categorical variable with three levels (3-5, 6-8, 9+). Programming language preference is a categorical variable with three levels (Python, R, No preference), and career track orientation is a binary variable (Industry-only vs. Lab-inclined).
 
 ## Questions of interest
 

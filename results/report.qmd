@@ -97,6 +97,17 @@ background %>%
   theme_minimal()
 ```
 
+```{r}
+#Stats comfort by group
+background %>%
+  ggplot(aes(x = course_group, y = stat.comf)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.1, height = 0) +
+  labs(title = "Figure 1.3: Stats Comfort by Upper Division Courses",
+       x = 'Upper Division Courses', y = 'Stats Comfort Level') +
+  theme_minimal()
+```
+
 ## Useful tips (remove this section)
 
 Due to the visual editor, most common needs for authoring can be met using menu items in the RStudio IDE. For a comprehensive guide to Quarto, see the [documentation](https://quarto.org/docs/guide/); consult the documentation for anything you can't sort out in the IDE.

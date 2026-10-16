@@ -160,9 +160,6 @@ interest_comp <- interest %>%
     coding_language = factor(coding_language, levels = c("Python", "R", "No preference"))
   )
 
-#Checking values of two types to make sure we can actually run tests
-interest_comp %>% count(track_pref)
-
 #2x3 Contingency Table (Observed Counts)
 observed_table <- table(Track = interest_comp$track_pref, Language = interest_comp$coding_language)
 
@@ -178,7 +175,10 @@ ggplot(interest_comp, aes(x = track_pref, fill = coding_language)) +
     fill = "Language Preference"
   ) +
   theme_minimal()
+```
 
+Figure 2: Test Results
+```{r, echo = FALSE}
 #Pearson's Chi-Square Test for Independence
 chi_test <- chisq.test(observed_table)
 chi_test

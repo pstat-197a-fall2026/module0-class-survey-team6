@@ -82,34 +82,37 @@ background %>%
 ```{r}
 #Programming comfort by group
 background %>%
-  ggplot(aes(x = course_group, y = prog.comf)) +
-  geom_boxplot() +
-  geom_jitter(width = 0.1, height = 0) +
+  ggplot(aes(x = course_group, y = prog.comf, fill = course_group)) +
+  geom_boxplot(color = "black", alpha = 0.6) +
+  geom_jitter(width = 0.15, height = 0, size = 2) +
   labs(title = "Figure 1.1: Programming Comfort by Upper Division Courses",
        x = 'Upper Division Courses', y = 'Programming Comfort Level') +
-  theme_minimal()
+  theme_minimal() +
+  theme(legend.position = "none")
 ```
 
 ```{r}
 #Math comfort by group
 background %>%
-  ggplot(aes(x = course_group, y = math.comf)) +
-  geom_boxplot() +
-  geom_jitter(width = 0.1, height = 0) +
+  ggplot(aes(x = course_group, y = math.comf, fill = course_group)) +
+  geom_boxplot(color = "black", alpha = 0.6) +
+  geom_jitter(width = 0.15, height = 0, size = 2) +
   labs(title = "Figure 1.2: Math Comfort by Upper Division Courses",
        x = 'Upper Division Courses', y = 'Math Comfort Level') +
-  theme_minimal()
+  theme_minimal() +
+  theme(legend.position = "none")
 ```
 
 ```{r}
 #Stats comfort by group
 background %>%
-  ggplot(aes(x = course_group, y = stat.comf)) +
-  geom_boxplot() +
-  geom_jitter(width = 0.1, height = 0) +
+  ggplot(aes(x = course_group, y = stat.comf, fill = course_group)) +
+  geom_boxplot(color = "black", alpha = 0.6) +
+  geom_jitter(width = 0.15, height = 0, size = 2) +
   labs(title = "Figure 1.3: Stats Comfort by Upper Division Courses",
        x = 'Upper Division Courses', y = 'Stats Comfort Level') +
-  theme_minimal()
+  theme_minimal() +
+  theme(legend.position = "none")
 ```
 
 ```{r}

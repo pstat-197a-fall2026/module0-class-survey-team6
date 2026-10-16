@@ -2,3 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
+results/report_cache/
+.DS_Store
+.quarto/

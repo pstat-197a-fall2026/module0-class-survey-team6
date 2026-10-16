@@ -19,8 +19,6 @@ library(tidyverse)
 
 ## Executive summary
 
-Write a one-paragraph abstract summarizing what you did and your findings. It need not be comprehensive; try to highlight the most important or interesting outcomes.
-
 When looking at comfort levels and course counts, we failed to find correlation. This was also the case when considering if students with interest in Lab vs Industry positions favored either Python or R. When clustering students based on interests, the lack of distinct clusters was fairly apparent as well. The greatest obstacle in this research was the small sample size, which made rejecting null hypothesis challenging.
 
 ## Data description
@@ -128,13 +126,9 @@ tibble(comfort = c("Programming", "Math", "Stats"),
 
 ### Findings
 
-Summarize your results. Don't try to explain every step you took; focus instead on providing the main data analytic outputs -- tables and figures -- and explaining clearly what they show. Clarify any important decisions you made in obtaining them. You can display codes if you like but it is not necessary.
-
 ## Question #3
 
 ### Findings
-
-Summarize your results. Don't try to explain every step you took; focus instead on providing the main data analytic outputs -- tables and figures -- and explaining clearly what they show. Clarify any important decisions you made in obtaining them. You can display codes if you like but it is not necessary.
 
 Figure 1 shows that predictive modeling was the most popular topic of interest, selected by approximately 43 students, followed by deep learning and neural networks with 39 students. In contrast, algorithms was the least popular topic, selected by approximately 23 students. Overall, students appear most interested in applied data science and machine learning.
 

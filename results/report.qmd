@@ -337,3 +337,7 @@ ggplot(interest_goals, aes(x = factor(cluster), fill = type)) +
   ) +
   theme_minimal()
 ```
+
+## Conclusion / Team Takeaways
+
+While we enjoyed the project a ton, we would've loved to have worked with several quarters worth of data just to make the sample size larger and easier to work with.

@@ -34,6 +34,7 @@ Question #3 : Are there distinct "types" of students hiding in the interest data
 - Interest heat map: Shows the mean of each binary interest variable within each cluster, expressed as a percentage, to compare interest selections across clusters.
 - Programming language bar chart: Uses proportion-filled bars to compare programming language preferences across the three clusters.
 - Project goal bar chart: Uses proportion-filled bars to compare project goal preferences, represented by type, across the three clusters.
+- A Pearson’s chi-squared test assesses whether project goal preference is significantly associated with cluster membership.
 
 4. Key Choices to Check: The code sets the number of k-means clusters to three and uses the first two principal components for the scatterplot. The heat map calculates the mean of each binary interest variable within each cluster. The language and project goal comparisons connect cluster assignments to students using row numbers. These comparisons assume that the row order in the interest dataset remains consistent when the cluster assignments are joined back to the student records.
 

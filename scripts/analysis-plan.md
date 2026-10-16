@@ -12,6 +12,8 @@ Question #2 :Is there an association between programming language preference and
 
 3. Summaries & Plots: $2 \times 3$ contingency table, Chi-Square test of independence (with Fisher's Exact Test fallback as expected cell counts remain sparse for a box), and a 100% proportion-filled bar chart.
 
+4. Key Choices to Check: The code recodes type into two groups, which with "both" being assigned to the "Lab-Inclined" group.
+
 4. Limitation: Grouping students who chose "both" with "lab" balances group totals so Chi-Square can be ran, but groups flexible students as having an affinity for academic lab work.
 
 Question #3 : Are there distinct "types" of students hiding in the interest data?

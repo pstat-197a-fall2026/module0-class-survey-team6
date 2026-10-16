@@ -355,7 +355,3 @@ my_df %>%
   ggplot(aes(x = animal, y = threatening)) + 
   geom_col()
 ```
-
-### Links
-
-To include any hyperlinks, use `[display text](url)` .

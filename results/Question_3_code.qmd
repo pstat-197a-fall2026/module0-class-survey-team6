@@ -108,6 +108,7 @@ ggplot(cluster_graph, aes(x = factor(cluster), y = Interest,
   theme_minimal()
 ```
 
+
 ```{r}
 #What language does every cluster prefer 
 interest_binary$cluster <- clusters$cluster
@@ -128,6 +129,18 @@ ggplot(interest_language,
     fill = "Language"
   ) +
   theme_minimal()
+
+```
+```{r}
+# Chi-square test for programming language preference
+language_table <- table(
+  interest_language$cluster,
+  interest_language$language
+)
+
+language_test <- chisq.test(language_table)
+
+language_test
 ```
 
 ```{r}
@@ -150,4 +163,15 @@ ggplot(interest_goals, aes(x = factor(cluster), fill = type)) +
   ) +
   theme_minimal()
 
+```
+```{r}
+# Chi-square test for project goals
+goals_table <- table(
+  interest_goals$cluster,
+  interest_goals$type
+)
+
+goals_test <- chisq.test(goals_table)
+
+goals_test
 ```

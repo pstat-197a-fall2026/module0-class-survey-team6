@@ -129,7 +129,64 @@ tibble(comfort = c("Programming", "Math", "Stats"),
 
 ### Findings
 
-To answer this question, we classified students into Industry-Only (32 respondents) and Lab-Inclined (17 respondents who selected either lab or both tracks). Descriptively, language preferences show a visible split: Industry-Only students favored Python at 53.1% compared to just 15.6% for R, whereas Lab-Inclined respondents leaned toward R at 35.3% over Python at 29.4%, with "No preference" remaining nearly identical across both groups (\~31% to 35%). However, formal hypothesis testing indicates this difference may be attributable to sample variation rather than a true underlying relationship. A Pearson’s Chi-Square test of independence resulted in $X^2 = 3.359$ ($p = 0.186$), and a Fisher’s Exact Test—conducted because the expected count for Lab-Inclined students preferring R was under 5 ($E = 3.82$)—yielded $p = 0.181$. Because both $p$-values exceed the standard significance threshold of $\alpha = 0.05$, we fail to reject the null hypothesis of independence and conclude there is insufficient statistical evidence of an association between career track interest and programming language preference.
+To answer this question, we classified students into Industry-Only (32 respondents) and Lab-Inclined (17 respondents who selected either lab or both tracks). As shown in Figure 1, language preferences show a visible split: Industry-Only students favored Python at 53.1% compared to just 15.6% for R, whereas Lab-Inclined respondents leaned toward R at 35.3% over Python at 29.4%, with "No preference" remaining nearly identical across both groups (~31% to 35%). However, formal hypothesis testing indicates this difference may be attributable to sample variation rather than a true underlying relationship. A Pearson’s Chi-Square test of independence resulted in $X^2 = 3.359$ ($p = 0.186$), and a Fisher’s Exact Test—conducted because the expected count for Lab-Inclined students preferring R was under 5 ($E = 3.82$)—yielded $p = 0.181$. These results are shown in Figure 2. Because both $p$-values exceed the standard significance threshold of $\alpha = 0.05$, we fail to reject the null hypothesis of independence and conclude there is insufficient statistical evidence of an association between career track interest and programming language preference.
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(here)
+
+#Loading clean interest survey data with here (easier to access across different systems)
+data_file <- here("data", "interest-clean.csv")
+if (!file.exists(data_file)) {
+data_file <- here("interest-clean.csv")
+}
+
+#Reading the dataset
+interest <- read_csv(data_file, show_col_types = FALSE)
+
+#Coding tracks into Industry Only vs. Lab-Inclined and setting factor levels
+interest_comp <- interest %>%
+  
+  mutate(
+    
+    track_pref = case_when(
+      type == "ind" ~ "Industry Only",
+      type %in% c("lab", "both") ~ "Lab-Inclined"
+    ),
+    
+    track_pref = factor(track_pref, levels = c("Industry Only", "Lab-Inclined")),
+    
+    coding_language = str_trim(language),
+    coding_language = factor(coding_language, levels = c("Python", "R", "No preference"))
+  )
+
+#Checking values of two types to make sure we can actually run tests
+interest_comp %>% count(track_pref)
+
+#2x3 Contingency Table (Observed Counts)
+observed_table <- table(Track = interest_comp$track_pref, Language = interest_comp$coding_language)
+
+#Proportion-filled bar chart comparing language breakdowns across the different tracks
+ggplot(interest_comp, aes(x = track_pref, fill = coding_language)) +
+  geom_bar(position = "fill", color = "black") +
+  scale_y_continuous(labels = scales::percent) +
+  scale_fill_brewer(palette = "Set2") +
+  labs(
+    title = "Figure 1: Programming Language Preference by Track Orientation",
+    subtitle = "Comparing Industry-Only vs. Lab-Inclined Cohorts",
+    x = "Career Track Orientation", y = "Percentage of Students",
+    fill = "Language Preference"
+  ) +
+  theme_minimal()
+
+#Pearson's Chi-Square Test for Independence
+chi_test <- chisq.test(observed_table)
+chi_test
+
+#Fisher's Exact Test due to small sample size in some cells (Lab-Inclined x R is below 5 for expected counts)
+fisher_test <- fisher.test(observed_table)
+fisher_test
+``` 
 
 ## Question #3
 
